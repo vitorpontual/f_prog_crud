@@ -1,34 +1,95 @@
-# Sistema de Gestão - Projeto CRUD em Python
+# 📊 Sistema de Avaliações de Empresas (CRUD em Python)
 
-## Sobre o Projeto
-Este repositório contém um sistema de gerenciamento via terminal desenvolvido como projeto acadêmico para a disciplina de **[Nome da Disciplina]**. O sistema foi construído com base nos conceitos abordados em sala de aula, focando na implementação de operações **CRUD** (Create, Read, Update, Delete) sem a dependência de bibliotecas externas complexas.
+Um sistema completo de linha de comando (CLI) desenvolvido em **Python Puro**, sem o uso de bibliotecas externas ou orientação a objetos (sem classes), focado em programação funcional e no padrão de arquitetura **MVC (Model-View-Controller)**. 
 
-O objetivo principal é construir uma aplicação funcional que demonstre domínio sobre as estruturas de dados nativas do Python e boas práticas de programação, como modularização e tratamento de exceções.
+Os dados são armazenados localmente utilizando arquivos `.json`.
 
-## Conceitos e Estruturas Utilizadas
-Para garantir a robustez e organização do código, o projeto faz uso intensivo dos seguintes recursos da linguagem:
+## ✨ Funcionalidades
 
-* **Listas:** Utilizadas como a "base de dados" principal em memória, armazenando e iterando sobre todos os registros do sistema.
-* **Dicionários (Dict):** Responsáveis por modelar as entidades do sistema (ex: `{"id": 1, "nome": "Produto", "quantidade": 5}`), mapeando chaves e valores para facilitar a busca e atualização.
-* **Tuplas:** Empregadas para definir dados estáticos e imutáveis durante a execução, como as opções dos menus de navegação ou parâmetros fixos.
-* **Funções:** Todo o fluxo do programa é modularizado. Cada operação (adicionar, listar, editar, remover) possui sua própria função, mantendo o arquivo principal limpo e o código reutilizável.
-* **Manipulação de Dados:** Tratamento e formatação de strings, conversão de tipos de dados recebidos pelos inputs e formatação da exibição no terminal.
-* **Tratamento de Exceções (Try/Except):** Implementado como uma camada de segurança nas interações com o usuário, prevenindo que o programa quebre ao receber valores inesperados (como digitar uma letra quando o sistema espera um número de ID).
+### 👤 Usuários
+* **Cadastro e Login:** Validação de unicidade de CPF e E-mail para evitar cadastros duplicados.
+* **Avaliação de Empresas:** Permite avaliar empresas (de 1 a 5 estrelas e comentário) informando apenas o CNPJ. *A empresa não precisa estar cadastrada no sistema para receber uma avaliação.*
+* **Edição de Avaliações:** O usuário pode alterar o comentário de avaliações passadas.
+* **Listagem:** Visualização de todas as empresas cadastradas e suas respectivas avaliações.
+* **Exclusão de Conta:** Deleção completa da conta de usuário.
 
-## Funcionalidades (CRUD)
-- Create (Criar): Adição de novos registros validados no sistema.
-- Read (Ler): Exibição de todos os registros armazenados ou busca detalhada por identificador.
-- Update (Atualizar): Modificação de atributos específicos de um registro existente.
-- Delete (Excluir): Remoção segura de registros, com confirmação e validação de existência.
+### 🏢 Empresas
+* **Cadastro e Login:** Validação de unicidade de CNPJ.
+* **Dashboard Interativo:** Exibe o total de avaliações recebidas, a **Média Geral de Estrelas** e a lista de avaliações (identificando os usuários pelo E-mail).
+* **Herança de Avaliações:** Se uma empresa for cadastrada com um CNPJ que já possui avaliações feitas por usuários no passado, ela as "herda" automaticamente em seu dashboard.
+* **Exclusão de Conta:** Deleção completa da conta da empresa.
 
-## Como Executar
-1. Certifique-se de ter o [Python 3.x](https://www.python.org/downloads/) instalado na sua máquina.
-2. Clone este repositório ou baixe os arquivos fonte.
-3. Navegue até o diretório do projeto no seu terminal.
-4. Execute o arquivo principal:
-   ```bash
-   python main.py
-   ```
+## 🏗️ Arquitetura MVC (Estrutura do Projeto)
 
-## Autor
-Squad 10.1 - Desenvolvimento inicial
+O projeto foi rigorosamente dividido para separar a interface, as regras de negócio e a manipulação de dados:
+
+```text
+meu_projeto/
+│
+├── utils/
+│   └── database.py             # Funções genéricas de leitura e escrita de JSON
+│
+├── models/                     # (M) Manipulação direta dos arquivos .json
+│   ├── usuario_model.py
+│   ├── empresa_model.py
+│   └── avaliacao_model.py
+│
+├── controllers/                # (C) Regras de negócio, validações e cálculos (Ex: média)
+│   ├── usuario_controller.py
+│   └── empresa_controller.py
+│
+├── views/                      # (V) Interface com o usuário (prints e inputs do terminal)
+│   ├── main_view.py
+│   ├── user_view.py
+│   └── empresa_view.py
+│
+└── main.py                     # Arquivo principal que inicializa o sistema
+
+```
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+* **Python 3.x** instalado na sua máquina.
+
+### Instalação e Execução
+
+1. Clone este repositório ou baixe os arquivos do projeto.
+2. Abra o terminal e navegue até a pasta raiz do projeto:
+```bash
+cd caminho/para/o/projeto
+
+```
+
+
+3. Execute o arquivo principal:
+```bash
+python main.py
+
+```
+
+
+*(Dependendo da sua instalação, pode ser necessário usar `python3 main.py`)*
+
+## 💻 Como Utilizar o Sistema
+
+Ao iniciar o programa, você verá a **Tela Inicial**.
+
+1. **Para testar o fluxo completo:** Comece escolhendo a opção `3` e crie um Novo Usuário.
+2. Faça o login na opção `1`.
+3. No **Painel do Usuário**, escolha avaliar uma empresa (digite um CNPJ fictício, como `111222333`).
+4. Saia da conta (Logout) e cadastre uma Nova Empresa na tela inicial (opção `4`) usando o **mesmo CNPJ** que você avaliou.
+5. Faça o login como Empresa (opção `2`) e acesse o Dashboard. Você verá que a avaliação feita pelo usuário já estará vinculada a esta empresa.
+
+## 🗄️ Banco de Dados (JSON)
+
+O sistema cria automaticamente uma pasta chamada `database` na raiz do projeto na primeira vez que um dado é salvo.
+Dentro dela, os arquivos `usuarios.json`, `empresas.json` e `avaliacoes.json` armazenam as informações em formato de lista de dicionários (`[ {...} ]`).
+
+---
+
+*Desenvolvido como projeto de Fundamentos de Programação para aprofundamento em estruturas de dados, manipulação de arquivos e arquitetura de software.*
+
+
+
