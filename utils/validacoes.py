@@ -17,3 +17,16 @@ def validar_email(email):
         return True
     else:
         return False
+
+
+def calcular_media_estrelas(avaliacoes):
+    if len(avaliacoes) == 0:
+        return 0.0
+
+    soma = 0
+    for av in avaliacoes:
+        soma += av['estrelas']
+
+    media = soma / len(avaliacoes)
+
+    return round(media, 1)

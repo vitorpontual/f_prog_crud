@@ -16,3 +16,16 @@ def buscar_empresa_por_cnpj(cnpj):
         if empresa['cnpj'] == cnpj:
             return empresa
     return None
+
+def deletar_empresa_por_cnpj(cnpj):
+    empresas = load_json(FILE)
+    
+    lista = []
+    for emp in empresas:
+        if emp['cnpj'] != cnpj:
+            lista.append(emp)
+
+    save_json(FILE, lista)
+
+    
+    

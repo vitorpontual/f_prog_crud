@@ -24,3 +24,14 @@ def buscar_usuario_por_email(email):
         if usuario['email'] == email:
             return usuario
     return None
+
+def deletar_usuario_por_cpf(cpf):
+    usuarios = load_json(FILE)
+    
+    lista = []
+
+    for usuario in usuarios:
+        if usuario['cpf'] != cpf:
+            lista.append(usuario)
+
+    save_json(FILE, lista)
