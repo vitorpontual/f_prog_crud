@@ -27,7 +27,8 @@ O projeto foi rigorosamente dividido para separar a interface, as regras de neg�
 meu_projeto/
 │
 ├── utils/
-│   └── database.py             # Funções genéricas de leitura e escrita de JSON
+│   ├── database.py             # Funções genéricas de leitura e escrita de JSON
+│   └── validacoes.py             
 │
 ├── models/                     # (M) Manipulação direta dos arquivos .json
 │   ├── usuario_model.py
