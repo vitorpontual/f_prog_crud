@@ -18,8 +18,8 @@ def menu_empresa_logada(emp):
                 print(f"Média Geral: {dash['media']} Estrelas")
                 for av in dash['lista']:
                     print(f"[{av['estrelas']} Estrelas]"
-                          f"(Email: {av['email']}) -"
-                          f"{av['comentario']}")
+                          f"(Email: {av['email']}) - "
+                          f"{av['comentario'].capitalize()}")
             case '2':
                 confirmacao = input("Tem certeza que quer apagar a conta? [S/N]")
                 if confirmacao.upper() == 'S':

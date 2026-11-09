@@ -2,7 +2,7 @@ from utils.database import *
 
 FILE = 'avalaliacao.json'
 
-def criar_avaliacao(email, cnpj_empresa, estrelas, comentario=''):
+def criar_avaliacao(email, cnpj_empresa, estrelas, comentario='', ativa=False):
     avaliacoes = load_json(FILE)
     nova_avaliacao = {
         'email' : email,
@@ -27,7 +27,7 @@ def buscar_avaliacoes_por_empresa(cnpj):
 def buscar_avaliacao_especifica(email, cnpj):
     avaliacoes = load_json(FILE)
     for avaliacao in avaliacoes:
-        if avaliacao['email'] == email and avaliaca['cnpj'] == cnpj:
+        if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj:
             return avaliacao
 
     return None
@@ -41,6 +41,7 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
         if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj:
             avaliacao['comentario'] = comentario
             avaliacao['estrelas'] = estrelas
+            atualizado = True
             break
 
     if atualizado:

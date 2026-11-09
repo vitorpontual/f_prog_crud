@@ -4,8 +4,15 @@ from models.avaliacao_model import *
 from utils.validacoes import *
 
 def cadastrar_empresa(nome, cnpj, senha):
-    if buscar_empresa_por_cnpj(cnpj):
-        return "Error: Já existe uma empresa com este CNPJ."
+    empresa = buscar_empresa_por_cnpj(cnpj)
+    if empresa:
+        if empresa['cadastro'] == True:
+            return "Error: Já existe uma empresa com este CNPJ."
+        else:
+            ativar_cadastro_empresa(nome, cnpj, senha)
+            return 'Cadastro Efetivado com Sucesso! Sua empresa já possuia avalaiações prévias'
+
+
 
     criar_empresa(nome, cnpj, senha)
     return "Empresa cadastrada com sucesso!"
@@ -13,13 +20,14 @@ def cadastrar_empresa(nome, cnpj, senha):
 
 def empresa_login(cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
-    if empresa and empresa['senha'] == senha:
+    if empresa and empresa['senha'] == senha and empresa['cadastro'] == True:
         return empresa
     return None
 
 def dashboard(cnpj):
     avaliacoes = buscar_avaliacoes_por_empresa(cnpj)
     media = calcular_media_estrelas(avaliacoes)
+    print(media)
     lista_dashboard = []
 
     for av in avaliacoes:
@@ -34,7 +42,7 @@ def dashboard(cnpj):
 
     return {
         'total': len(avaliacoes),
-        'media_estrelas': media,
+        'media': media,
         'lista': lista_dashboard
     }
   

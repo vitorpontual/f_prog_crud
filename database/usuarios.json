@@ -1,1 +1,20 @@
-
+[
+    {
+        "nome": "q",
+        "email": "q@q.com",
+        "senha": "1",
+        "cpf": ""
+    },
+    {
+        "nome": "Vitor Pontual",
+        "email": "vpqg@cesar.school",
+        "senha": "1",
+        "cpf": "000000000"
+    },
+    {
+        "nome": "Anrry Lauan",
+        "email": "alos@cesar.school",
+        "senha": "1",
+        "cpf": "12312312300"
+    }
+]

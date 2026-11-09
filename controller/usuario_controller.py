@@ -1,6 +1,7 @@
 from models.usuario_model import *
 from models.avaliacao_model import *
 from models.empresa_model import *
+from utils.validacoes import *
 
 def cadastrar_usuario(nome, email, senha, cpf):
     if buscar_usuario_por_cpf(cpf):
@@ -27,6 +28,11 @@ def registrar_avaliacao(email, cnpj, estrelas, comentario):
 
     if buscar_avaliacao_especifica(email, cnpj):
         return "Erro: Você já avaliou a empresa. Use a opção alterar comentário se desejar."
+
+    empresa = buscar_empresa_por_cnpj(cnpj)
+    if not empresa:
+        criar_empresa("EMPRESA NÃO CADASTRADA",cnpj,"",False)
+        
     criar_avaliacao(email, cnpj, estrelas, comentario)
     return 'Avaliação Registrada com suceso!'
 
@@ -45,18 +51,19 @@ def alterar_avaliacao(email, cnpj, estrelas, comentario):
 
 
 def listar_empresas():
-    empresas = listar_empresas()
-
+    empresas = listar_todas_empresas() 
     lista_completa = []
 
     for emp in empresas:
-        avaliacoes = buscar_avaliacoes_por_empresa(emp)
+        avaliacoes = buscar_avaliacoes_por_empresa(emp['cnpj'])
+        media = calcular_media_estrelas(avaliacoes)
 
-    lista_completa.append({
-        'empresa': emp['nome'],
-        'cnpj': emp['cnpj'],
-        'avaliacoes': avaliacoes
-    })
+        lista_completa.append({
+            'empresa': emp['nome'],
+            'cnpj': emp['cnpj'],
+            'media': media,
+            'avaliacoes': avaliacoes
+        })
 
     return lista_completa
 

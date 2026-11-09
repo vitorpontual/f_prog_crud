@@ -1,1 +1,8 @@
-[]
+[
+    {
+        "nome": "Cesar",
+        "cnpj": "0",
+        "senha": "1",
+        "cadastro": true
+    }
+]

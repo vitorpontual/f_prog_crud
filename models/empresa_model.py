@@ -2,12 +2,24 @@ from utils.database import *
 
 FILE = 'empresa.json'
 
-def criar_empresa(nome, cnpj, senha):
+def criar_empresa(nome, cnpj, senha, cadastro=True):
     empresas = load_json(FILE)
     nova_empresa = {
-        'nome': nome, 'cnpj': cnpj, "senha": senha
+        'nome': nome, 'cnpj': cnpj, "senha": senha, "cadastro": cadastro
     }
     empresas.append(nova_empresa)
+    print("passei")
+    save_json(FILE, empresas)
+
+def ativar_cadastro_empresa(nome_real, cnpj, senha):
+    empresas = load_json(FILE)
+    for emp in empresas:
+        if emp['cnpj'] == cnpj:
+            emp['nome'] = nome_real
+            emp['senha'] = senha
+            emp['cadastro'] = True
+            break
+        
     save_json(FILE, empresas)
 
 def buscar_empresa_por_cnpj(cnpj):
@@ -16,6 +28,21 @@ def buscar_empresa_por_cnpj(cnpj):
         if empresa['cnpj'] == cnpj:
             return empresa
     return None
+
+def listar_todas_empresas():
+    empresas = load_json(FILE)
+    
+    lista = []
+    if not empresas:
+        print("Nenhuma Empresa Cadastrada Ainda.")
+        return []
+    
+    for emp in empresas:
+        lista.append(emp)
+
+    return lista
+        
+    
 
 def deletar_empresa_por_cnpj(cnpj):
     empresas = load_json(FILE)

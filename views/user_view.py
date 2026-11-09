@@ -1,4 +1,6 @@
 from controller.usuario_controller import *
+from utils.validacoes import *
+
 def menu_usuario_logado(usuario):
     email = usuario['email']
     cpf = usuario['cpf']
@@ -19,6 +21,7 @@ def menu_usuario_logado(usuario):
                     estrelas = int(input("Nota (0 a 5): "))
                     comentario = input("Comentário (opcional): ")
                     msg = registrar_avaliacao(email, cnpj, estrelas, comentario)
+                    print(msg)
                 except ValueError:
                     print("Erro: A nota deve ser um número inteiro!")
             case '2':
@@ -35,15 +38,18 @@ def menu_usuario_logado(usuario):
                 dados = listar_empresas()
                 print("\n --- TODAS EMPRESAS E AVALIAÇÕES ---")
                 for item in dados:
-                    print(f"\nEmpresa: {item['nome']}")
+                    print(f"\nEmpresa: {item['empresa']}")
+                    print(f"CNPJ: {item['cnpj']}")
+                    print(f"Média Geral -> {item['media']}")
                     if not item['avaliacoes']:
                         print("\t-> Nenhuma avaliação ainda.")
                     else:
                         for av in item['avaliacoes']:
-                            print(f"\t-> [{av['estrelas']}\n\t{av['comentario']}]")
+                            print(f"\t->[{av['estrelas']}]->[{av['comentario']}] de [{av['email']}]")
+                    print("-"*50)
 
             case '4':
-                confirmacao = input("Tem certeza que deseja deletar sua conta> [S/N]")
+                confirmacao = input("Tem certeza que deseja deletar sua conta? [S/N]")
                 if confirmacao.upper() == "S":
                     msg = deletar_conta_usuario(cpf)
                     print(msg)
