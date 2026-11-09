@@ -8,7 +8,7 @@ Os dados são armazenados localmente utilizando arquivos `.json`.
 
 ### 👤 Usuários
 * **Cadastro e Login:** Validação de unicidade de CPF e E-mail para evitar cadastros duplicados.
-* **Avaliação de Empresas:** Permite avaliar empresas (de 1 a 5 estrelas e comentário) informando apenas o CNPJ. *A empresa não precisa estar cadastrada no sistema para receber uma avaliação.*
+* **Avaliação de Empresas:** Permite avaliar empresas (de 0 a 5 estrelas e comentário) informando apenas o CNPJ. *A empresa não precisa estar cadastrada no sistema para receber uma avaliação.*
 * **Edição de Avaliações:** O usuário pode alterar o comentário de avaliações passadas.
 * **Listagem:** Visualização de todas as empresas cadastradas e suas respectivas avaliações.
 * **Exclusão de Conta:** Deleção completa da conta de usuário.
