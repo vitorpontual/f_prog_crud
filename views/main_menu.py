@@ -40,7 +40,7 @@ def main_menu():
                 nome = input("Nome: ")
                 email = validar_email() 
                 senha = confirmar_senha()
-                cpf = input("CPF: ")
+                cpf = cpf_validador()
                 msg = cadastrar_usuario(nome, email, senha, cpf)
                 print(msg)
             case '4':

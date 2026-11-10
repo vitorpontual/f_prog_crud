@@ -71,4 +71,10 @@ def deletar_conta_usuario(cpf):
     deletar_usuario_por_cpf(cpf)
     return "Conta deletada com sucesso."
 
+def deletar_avaliacao_usuario(email, cnpj):
+    
+    deletar_avaliacao(email,cnpj)
+
+    return "Avaliacação deletada com sucesso."
+
 

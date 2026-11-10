@@ -1,14 +1,8 @@
 [
     {
-        "email": "vpqg@cesar.school",
-        "cnpj": "0",
-        "estrelas": 3,
-        "comentario": "coco"
-    },
-    {
         "email": "alos@cesar.school",
         "cnpj": "0",
-        "estrelas": 2,
-        "comentario": "tolete"
+        "estrelas": 5,
+        "comentario": "1"
     }
 ]

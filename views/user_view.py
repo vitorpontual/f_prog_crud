@@ -9,8 +9,9 @@ def menu_usuario_logado(usuario):
 
         print("1 - Avaliar Empresa (Por CNPJ)")
         print("2 - Alterar Avaliação")
-        print("3 - Ver Empresas e suas Avaliações")
-        print("4 - Deletar Minha Conta")
+        print("3 - Deletar Avaliação")
+        print("4 - Ver Empresas e suas Avaliações")
+        print("5 - Deletar Minha Conta")
         print("0 - Fazer logout")
         opcao = input("Escolha: ")
 
@@ -35,6 +36,18 @@ def menu_usuario_logado(usuario):
                     print("Error: A nota de ser um número inteiro!")
             
             case '3':
+                print("\n === DELETAR AVALIAÇÃO ===")
+                cnpj = input("CNPJ: ")
+                confirmar = input("Deseja excluir a avaliação [S/N]: ")
+
+                if confirmar.upper() == 'S':
+                    msg = deletar_avaliacao_usuario(email, cnpj)
+                    print(msg)
+
+
+
+
+            case '4':
                 dados = listar_empresas()
                 print("\n --- TODAS EMPRESAS E AVALIAÇÕES ---")
                 for item in dados:
@@ -48,7 +61,7 @@ def menu_usuario_logado(usuario):
                             print(f"\t->[{av['estrelas']}]->[{av['comentario']}] de [{av['email']}]")
                     print("-"*50)
 
-            case '4':
+            case '5':
                 confirmacao = input("Tem certeza que deseja deletar sua conta? [S/N]")
                 if confirmacao.upper() == "S":
                     msg = deletar_conta_usuario(cpf)

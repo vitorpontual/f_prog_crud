@@ -47,3 +47,14 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
     if atualizado:
         save_json(FILE, avaliacoes)
     return atualizado
+
+def deletar_avaliacao(email, cnpj):
+    avaliacoes = load_json(FILE)
+    lista = []
+
+    for av in avaliacoes:
+        if av['email'] != email and cnpj == av['cnpj']:
+            lista.append(av)
+
+    save_json(FILE, lista)
+
