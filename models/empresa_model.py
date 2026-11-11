@@ -8,7 +8,6 @@ def criar_empresa(nome, cnpj, senha, cadastro=True):
         'nome': nome, 'cnpj': cnpj, "senha": senha, "cadastro": cadastro
     }
     empresas.append(nova_empresa)
-    print("passei")
     save_json(FILE, empresas)
 
 def ativar_cadastro_empresa(nome_real, cnpj, senha):
@@ -28,6 +27,14 @@ def buscar_empresa_por_cnpj(cnpj):
         if empresa['cnpj'] == cnpj:
             return empresa
     return None
+
+def buscar_empresa_por_nome(nome):
+    empresas = load_json(FILE)
+
+    for empresa in empresas:
+        if empresa['nome'] == nome.lower():
+            return empresa
+    return False
 
 def listar_todas_empresas():
     empresas = load_json(FILE)

@@ -1,13 +1,18 @@
 from utils.database import *
 
 
-FILE = 'usuarios.json'
+FILE = 'usuario.json'
 
-def criar_usuario(nome, email, senha, cpf):
+def criar_usuario(nome, email, senha, cpf, pcd=''):
     usuarios = load_json(FILE)
-    novo_usuario = {
-        'nome': nome, 'email': email, 'senha': senha, 'cpf': cpf
-    }
+    if pcd:
+        novo_usuario = {
+            'nome': nome, 'email': email, 'senha': senha, 'cpf': cpf, 'pcd': pcd
+        }
+    else:
+        novo_usuario = {
+            'nome': nome, 'email': email, 'senha': senha, 'cpf': cpf, 'pcd': pcd
+        }
     usuarios.append(novo_usuario)
     save_json(FILE, usuarios)
 

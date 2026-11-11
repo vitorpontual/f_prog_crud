@@ -40,8 +40,9 @@ def main_menu():
                 nome = input("Nome: ")
                 email = validar_email() 
                 senha = confirmar_senha()
-                cpf = cpf_validador()
-                msg = cadastrar_usuario(nome, email, senha, cpf)
+                cpf = input("CPF: ")
+                pdc = input("É portador de qual deficiência: ")
+                msg = cadastrar_usuario(nome, email, senha, cpf, pdc)
                 print(msg)
             case '4':
                 nome = input("Nome: ")

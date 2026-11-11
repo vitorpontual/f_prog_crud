@@ -3,7 +3,7 @@ from models.avaliacao_model import *
 from models.empresa_model import *
 from utils.validacoes import *
 
-def cadastrar_usuario(nome, email, senha, cpf):
+def cadastrar_usuario(nome, email, senha, cpf, pcd):
     if buscar_usuario_por_cpf(cpf):
         return "Error: Já existe um usuário cadastrado com esse CPF."
 
@@ -11,7 +11,7 @@ def cadastrar_usuario(nome, email, senha, cpf):
         return "Error: Já existe um usuário cadastrado com esse Email"
 
     
-    criar_usuario(nome, email, senha, cpf)
+    criar_usuario(nome, email, senha, cpf, pcd)
     return 'Usuário cadastrado com sucesso'
 
 
@@ -22,7 +22,7 @@ def usuario_login(email, senha):
         return usuario
     return None
 
-def registrar_avaliacao(email, cnpj, estrelas, comentario):
+def registrar_avaliacao(email, nome, cnpj, estrelas, comentario):
     if not (0 <= estrelas <= 5):
         return "Erro: A nota deve ser entre 0 e 5 estrelas"
 
@@ -31,10 +31,15 @@ def registrar_avaliacao(email, cnpj, estrelas, comentario):
 
     empresa = buscar_empresa_por_cnpj(cnpj)
     if not empresa:
-        criar_empresa("EMPRESA NÃO CADASTRADA",cnpj,"",False)
+        criar_empresa(nome, cnpj,"",False)
         
     criar_avaliacao(email, cnpj, estrelas, comentario)
     return 'Avaliação Registrada com suceso!'
+
+def perfil_usuario(email):
+    usuario = buscar_usuario_por_email(email)
+
+    return usuario
 
 
 
@@ -49,23 +54,26 @@ def alterar_avaliacao(email, cnpj, estrelas, comentario):
         return 'Avalaiação alterada com sucesso!'
     return "Error ao atualizar"
 
+def buscar_empresa(nome):
+    empresa = buscar_empresa_por_nome(nome)   
+    if not empresa:
+        return (False,'Empresa não encontrada')
+
+    avaliacao = buscar_avaliacoes_por_empresa(empresa['cnpj'])
+
+    if not avaliacao:
+        return (False, f'{empresa['nome'].capitalize()} sem avalaiaçõs')
+    
+    return (True, empresa, avaliacao)
 
 def listar_empresas():
-    empresas = listar_todas_empresas() 
-    lista_completa = []
+    empresas = listar_todas_empresas()
 
-    for emp in empresas:
-        avaliacoes = buscar_avaliacoes_por_empresa(emp['cnpj'])
-        media = calcular_media_estrelas(avaliacoes)
+    if not empresas:
+        return 'Nenhuma empresas cadastrada'
 
-        lista_completa.append({
-            'empresa': emp['nome'],
-            'cnpj': emp['cnpj'],
-            'media': media,
-            'avaliacoes': avaliacoes
-        })
 
-    return lista_completa
+    return empresas
 
 def deletar_conta_usuario(cpf):
     deletar_usuario_por_cpf(cpf)

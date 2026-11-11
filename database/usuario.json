@@ -1,0 +1,30 @@
+[
+  {
+    "nome": "Vitor Guedes",
+    "email": "vitor@email.com",
+    "senha": "123",
+    "cpf": "111",
+    "pcd": "neurodivergente"
+  },
+  {
+    "nome": "João Silva",
+    "email": "joao@email.com",
+    "senha": "123",
+    "cpf": "222",
+    "pcd": "surdo"
+  },
+  {
+    "nome": "Maria Costa",
+    "email": "maria@email.com",
+    "senha": "123",
+    "cpf": "333",
+    "pcd": ""
+  },
+  {
+    "nome": "Jorge",
+    "email": "lucas@email.com",
+    "senha": "123",
+    "cpf": "444",
+    "pcd": "cego"
+  }
+]

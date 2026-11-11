@@ -10,23 +10,28 @@ def menu_usuario_logado(usuario):
         print("1 - Avaliar Empresa (Por CNPJ)")
         print("2 - Alterar Avaliação")
         print("3 - Deletar Avaliação")
-        print("4 - Ver Empresas e suas Avaliações")
-        print("5 - Deletar Minha Conta")
+        print("4 - Buscar Empresa")
+        print("5 - Listar Empresas")
+        print("8 - Perfil")
+        print("9 - Deletar Minha Conta")
         print("0 - Fazer logout")
         opcao = input("Escolha: ")
 
         match opcao:
             case '1':
+                print("\n---- Avaliar Empresa ----")
+                nome = input("Nome da Empresa: ")
                 cnpj = input("CNPJ da Empresa (pode não estar cadastrada): ")
                 try:
                     estrelas = int(input("Nota (0 a 5): "))
                     comentario = input("Comentário (opcional): ")
-                    msg = registrar_avaliacao(email, cnpj, estrelas, comentario)
+                    msg = registrar_avaliacao(email, nome, cnpj, estrelas, comentario)
                     print(msg)
                 except ValueError:
                     print("Erro: A nota deve ser um número inteiro!")
+
             case '2':
-                cnpj = input("CNPJ da Empresa avaliada: ")
+                cnpj = input("Editar Avaliação da CNPJ da Empresa [CNPJ]: ")
                 try: 
                     estrelas = int(input("Nota ( 0 a 5): "))
                     comentario = input("[Editar] Comentário: ")
@@ -44,24 +49,41 @@ def menu_usuario_logado(usuario):
                     msg = deletar_avaliacao_usuario(email, cnpj)
                     print(msg)
 
-
-
-
             case '4':
-                dados = listar_empresas()
-                print("\n --- TODAS EMPRESAS E AVALIAÇÕES ---")
-                for item in dados:
-                    print(f"\nEmpresa: {item['empresa']}")
-                    print(f"CNPJ: {item['cnpj']}")
-                    print(f"Média Geral -> {item['media']}")
-                    if not item['avaliacoes']:
-                        print("\t-> Nenhuma avaliação ainda.")
-                    else:
-                        for av in item['avaliacoes']:
-                            print(f"\t->[{av['estrelas']}]->[{av['comentario']}] de [{av['email']}]")
-                    print("-"*50)
+                print("\n --- BUSCAR EMPRESA ---")
+                nome = input("Nome da Empresa: ")
+                empresa = buscar_empresa(nome) 
+                if empresa[0]:
+                    emp = empresa[1]
+                    ava = empresa[2]
+                    print(f"Nome: {emp['nome'].capitalize()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
+                    print(f"\nAvaliação Total: {ava['total']}\nMédia Estrelas: {ava['media']}")
+                    for av in ava['lista']:
+                        print(f"\nComentário: {av['comentario']}")
+                        print(f"Estrela: {av['estrelas']}")
+                        print(f"Autor: {av['email']}")
+                else:
+                    print(empresa[1])
+
 
             case '5':
+                print("\n --- LISTA DAS EMPRESAS E AVALIAÇÕES ---")
+                empresas = listar_empresas()
+                for emp in empresas:
+                    print(f"Nome da Empresa: {emp['nome'].title()}")
+                    print(f"CNPJ da Empresa: {emp['cnpj']}")
+
+
+            case '8':
+                print(f"\n --- PERFIL {usuario['nome']} ----")
+                perfil = perfil_usuario(usuario['email'])
+
+                print(f"\nNOME: {usuario['nome']}")
+                print(f"EMAIL: {usuario['email']}")
+                if usuario['pcd']:
+                    print(f"DEFICIÊNCIA: {usuario['pcd']}")
+
+            case '9':
                 confirmacao = input("Tem certeza que deseja deletar sua conta? [S/N]")
                 if confirmacao.upper() == "S":
                     msg = deletar_conta_usuario(cpf)
