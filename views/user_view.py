@@ -21,7 +21,8 @@ def menu_usuario_logado(usuario):
             case '1':
                 print("\n---- Avaliar Empresa ----")
                 nome = input("Nome da Empresa: ")
-                cnpj = input("CNPJ da Empresa (pode não estar cadastrada): ")
+                conteudo = "CNPJ da Empresa (pode não estar cadastrada): "
+                cnpj = validar_cpf_cnpj(conteudo) 
                 try:
                     estrelas = int(input("Nota (0 a 5): "))
                     comentario = input("Comentário (opcional): ")
@@ -42,7 +43,8 @@ def menu_usuario_logado(usuario):
             
             case '3':
                 print("\n === DELETAR AVALIAÇÃO ===")
-                cnpj = input("CNPJ: ")
+                conteudo = "CNPJ: "
+                cnpj = validar_cpf_cnpj(conteudo)
                 confirmar = input("Deseja excluir a avaliação [S/N]: ")
 
                 if confirmar.upper() == 'S':

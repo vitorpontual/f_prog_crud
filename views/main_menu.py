@@ -27,7 +27,8 @@ def main_menu():
                 else:
                     print("Erro: Email ou senha incorretos.")
             case '2':
-                cnpj = input("CNPJ: ")
+                conteudo = "CNPJ: "
+                cnpj = validar_cpf_cnpj(conteudo)
                 senha = input("Senha: ")
                 empresa = empresa_login(cnpj, senha)
                 if empresa:
@@ -40,14 +41,16 @@ def main_menu():
                 nome = input("Nome: ")
                 email = validar_email() 
                 senha = confirmar_senha()
-                cpf = input("CPF: ")
+                conteudo = "CPF: "
+                cpf = validar_cpf_cnpj(conteudo)
                 pdc = input("É portador de qual deficiência: ")
                 msg = cadastrar_usuario(nome, email, senha, cpf, pdc)
                 print(msg)
             case '4':
                 nome = input("Nome: ")
-                cnpj = input("CNPJ: ")
-                senha = input("Senha: ")
+                conteudo = "CNPJ: "
+                cnpj = validar_cpf_cnpj(conteudo)
+                senha = confirmar_senha
                 msg = cadastrar_empresa(nome, cnpj, senha)
                 print(msg)
 

@@ -35,8 +35,20 @@ def calcular_media_estrelas(avaliacoes):
 
     return round(media, 1)
 
+def validar_cpf_cnpj(conteudo):
+    while True:
+        try:
+            cpf_cnpj = input(f"{conteudo}")
 
-def cpf_validador():
+            if cpf_cnpj.isdigit():
+                return cpf_cnpj
+            else:
+                raise ValueError("CPF/CNPJ Inválido")
+        except Exception as e:
+            print(e)
+
+
+def cpf_validador_real():
     while True:
         try:
             cpf_entrada = input("CPF: ")

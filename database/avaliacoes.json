@@ -1,11 +1,5 @@
 [
     {
-        "email": "vitor@email.com",
-        "cnpj": "1010",
-        "estrelas": 1,
-        "comentario": "demora muito"
-    },
-    {
         "email": "joao@email.com",
         "cnpj": "1010",
         "estrelas": 4,
@@ -16,5 +10,11 @@
         "cnpj": "9999",
         "estrelas": 1,
         "comentario": "Serviço péssimo, por isso nem cadastro têm."
+    },
+    {
+        "email": "vitor@email.com",
+        "cnpj": "1010",
+        "estrelas": 5,
+        "comentario": "atrasou duas semanas"
     }
 ]

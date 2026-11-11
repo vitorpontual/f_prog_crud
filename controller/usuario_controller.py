@@ -81,7 +81,9 @@ def deletar_conta_usuario(cpf):
 
 def deletar_avaliacao_usuario(email, cnpj):
     
-    deletar_avaliacao(email,cnpj)
+    deletar = deletar_avaliacao(email,cnpj)
+    if not deletar:
+        return "Empresa não cadastrada"
 
     return "Avaliacação deletada com sucesso."
 
