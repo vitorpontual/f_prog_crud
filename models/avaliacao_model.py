@@ -88,7 +88,7 @@ def deletar_avaliacao(email, cnpj):
 
     for av in avaliacoes:
         if av['email'] == email and cnpj == av['cnpj']:
-            data_hora = datetime.now().strftime("%d/%m/%Y% %H:%M")
+            data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
             log_tupla = (data_hora, av['estrelas'], av['comentario'], email)
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
         else:
