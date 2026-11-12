@@ -59,7 +59,7 @@ def menu_usuario_logado(usuario):
                     emp = empresa[1]
                     ava = empresa[2]
                     print(f"Nome: {emp['nome'].capitalize()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
-                    print(f"\nAvaliação Total: {ava['total']}\nMédia Estrelas: {ava['media']}")
+                    print(f"\nAvaliação Total: {ava['total']}\nMédia Estrelas: {ava['media']}\n{ava['selo']}")
                     for av in ava['lista']:
                         print(f"\nComentário: {av['comentario']}")
                         print(f"Estrela: {av['estrelas']}")

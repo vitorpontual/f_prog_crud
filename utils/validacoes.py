@@ -88,4 +88,15 @@ def cpf_validador_real():
             break
 
 
-
+def sistema_de_selos(total_usuarios, media):
+    if total_usuarios >= 4 and media > 4.8:
+        return "Selo Diamante"
+    elif total_usuarios > 3 and media > 4:
+        return "Selo Ouro"
+    elif total_usuarios > 2 and media > 3:
+        return "Selo Prata"
+    elif total_usuarios > 1 and media > 2:
+        return "Selo Bronze"
+    else:
+        return "Essa empresa não tem selo."
+    

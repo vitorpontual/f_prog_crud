@@ -1,6 +1,6 @@
 from utils.database import *
 from datetime import datetime
-from utils.validacoes import calcular_media_estrelas
+from utils.validacoes import calcular_media_estrelas, sistema_de_selos
 
 FILE = 'avaliacoes.json'
 LOG = 'log.csv'
@@ -33,6 +33,7 @@ def buscar_avaliacoes_por_empresa(cnpj):
         return []
     else:
         return {
+            'selo' : sistema_de_selos(len(lista), media),
             'total': len(lista),
             'media': media,
             'lista': lista
@@ -66,16 +67,15 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
 
     for avaliacao in avaliacoes:
         if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj:
-            data_hora = datetime.now().strftime("%Y/%m/%d %H:%M")
+            data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
             log_tupla = (data_hora, avaliacao['estrelas'], avaliacao['comentario'], email)
             avaliacao['comentario'] = comentario
             avaliacao['estrelas'] = estrelas
-            log.append({'cnpj': cnpj, 'log': log_tupla})
+            log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
             atualizado = True
             break
             
-
     if atualizado:
         save_json(LOG, log)
         save_json(FILE, avaliacoes)
@@ -84,13 +84,18 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
 def deletar_avaliacao(email, cnpj):
     avaliacoes = load_json(FILE)
     lista = []
-    lixo = []
+    log = []
 
     for av in avaliacoes:
         if av['email'] == email and cnpj == av['cnpj']:
-            lixo.append(av)
+            data_hora = datetime.now().strftime("%d/%m/%Y% %H:%M")
+            log_tupla = (data_hora, av['estrelas'], av['comentario'], email)
+            log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
         else:
+            print(av)
             lista.append(av)
 
+    save_json(LOG, log)
     save_json(FILE, lista)
+    return lista
 
