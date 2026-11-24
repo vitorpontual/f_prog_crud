@@ -1,20 +1,10 @@
 [
     {
-        "email": "joao@email.com",
+        "empresa": "cesar escola",
         "cnpj": "1010",
-        "estrelas": 4,
-        "comentario": "Muito bom, mas a caixa veio amassada."
-    },
-    {
-        "email": "maria@email.com",
-        "cnpj": "9999",
-        "estrelas": 1,
-        "comentario": "Serviço péssimo, por isso nem cadastro têm."
-    },
-    {
         "email": "vitor@email.com",
-        "cnpj": "1010",
-        "estrelas": 5,
-        "comentario": "massa"
+        "estrelas": 1,
+        "comentario": "Falta inclusão",
+        "cadastro": true
     }
 ]

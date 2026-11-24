@@ -3,15 +3,18 @@ from datetime import datetime
 from utils.validacoes import calcular_media_estrelas, sistema_de_selos
 
 FILE = 'avaliacoes.json'
-LOG = 'log.csv'
+LOG = 'log.json'
 
-def criar_avaliacao(email, cnpj_empresa, estrelas, comentario='', ativa=False):
+def criar_avaliacao(email, cnpj_empresa, nome, estrelas, comentario='', ativa=False):
     avaliacoes = load_json(FILE)
     nova_avaliacao = {
-        'email' : email,
+        'empresa': nome,
         'cnpj': cnpj_empresa,
+        'email' : email,
         'estrelas' : estrelas,
-        'comentario' : comentario }
+        'comentario' : comentario,
+        'cadastro' : ativa
+    }
 
     avaliacoes.append(nova_avaliacao)
     save_json(FILE, avaliacoes)
@@ -20,6 +23,7 @@ def criar_avaliacao(email, cnpj_empresa, estrelas, comentario='', ativa=False):
 def buscar_avaliacoes_por_empresa(cnpj):
     avaliacoes = load_json(FILE)
     lista = []
+
     for avaliacao in avaliacoes:
         if avaliacao['cnpj'] == cnpj: 
             lista.append({
@@ -51,10 +55,9 @@ def buscar_log(cnpj):
     return lista
 
 
-def buscar_avaliacao_especifica(email, cnpj):
+def buscar_avaliacao_especifica(cnpj):
     avaliacoes = load_json(FILE)
     for avaliacao in avaliacoes:
-        if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj:
             return avaliacao
 
     return None
@@ -66,7 +69,7 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
     atualizado = False
 
     for avaliacao in avaliacoes:
-        if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj:
+        if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj and avaliacao['cadastro'] == True:
             data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
             log_tupla = (data_hora, avaliacao['estrelas'], avaliacao['comentario'], email)
@@ -74,7 +77,10 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
             avaliacao['estrelas'] = estrelas
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
             atualizado = True
-            break
+        elif avaliacao['cadastro'] == False:
+            avaliacao['comentario'] = comentario
+            avaliacao['estrelas'] = estrelas
+            atualizado = True
             
     if atualizado:
         save_json(LOG, log)
@@ -87,10 +93,12 @@ def deletar_avaliacao(email, cnpj):
     log = []
 
     for av in avaliacoes:
-        if av['email'] == email and cnpj == av['cnpj']:
+        if av['email'] == email and cnpj == av['cnpj'] and av['cadastro'] == True:
             data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
             log_tupla = (data_hora, av['estrelas'], av['comentario'], email)
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
+        elif av['cadastro'] == False:
+            pass
         else:
             print(av)
             lista.append(av)

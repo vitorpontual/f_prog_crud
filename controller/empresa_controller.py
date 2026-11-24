@@ -42,3 +42,5 @@ def obter_log(cnpj):
 def deletar_conta_empresa(cnpj):
     deletar_empresa_por_cnpj(cnpj)
     return "Conta deletada com sucesso!"
+
+

@@ -18,14 +18,18 @@ def main_menu():
 
         match opt:
             case '1':
-                email = input("Email: ")
-                senha = input("Senha: ")
-                usuario = usuario_login(email, senha)
-                if usuario:
-                    print("Login realizado com sucesso!")
-                    menu_usuario_logado(usuario)
+                try:
+
+                    email = validar_email()
+                    senha = input("Senha: ")
+                    usuario = usuario_login(email, senha)
+                    if not usuario:
+                        raise ValueError("Email ou Senha Inválida")
+                except Exception as e:
+                    print(e)
                 else:
-                    print("Erro: Email ou senha incorretos.")
+                    print("Login Realizado com Sucesso!")
+                    menu_usuario_logado(usuario)
             case '2':
                 conteudo = "CNPJ: "
                 cnpj = validar_cpf_cnpj(conteudo)
@@ -50,7 +54,7 @@ def main_menu():
                 nome = input("Nome: ")
                 conteudo = "CNPJ: "
                 cnpj = validar_cpf_cnpj(conteudo)
-                senha = confirmar_senha
+                senha = confirmar_senha()
                 msg = cadastrar_empresa(nome, cnpj, senha)
                 print(msg)
 

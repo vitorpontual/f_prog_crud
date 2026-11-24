@@ -7,7 +7,7 @@ def menu_usuario_logado(usuario):
     while True:
         print(f"\n---PAINEL DO USUÁRIO: {usuario['nome']} ---")
 
-        print("1 - Avaliar Empresa (Por CNPJ)")
+        print("1 - Avaliar Empresa")
         print("2 - Alterar Avaliação")
         print("3 - Deletar Avaliação")
         print("4 - Buscar Empresa")
@@ -28,6 +28,8 @@ def menu_usuario_logado(usuario):
                     comentario = input("Comentário (opcional): ")
                     msg = registrar_avaliacao(email, nome, cnpj, estrelas, comentario)
                     print(msg)
+                except Exception as e:
+                    print(e)
                 except ValueError:
                     print("Erro: A nota deve ser um número inteiro!")
 
@@ -38,6 +40,8 @@ def menu_usuario_logado(usuario):
                     comentario = input("[Editar] Comentário: ")
                     msg = alterar_avaliacao(email, cnpj, estrelas, comentario)
                     print(msg)
+                except Exception as e:
+                    print(e)
                 except ValueError:
                     print("Error: A nota de ser um número inteiro!")
             
@@ -58,7 +62,7 @@ def menu_usuario_logado(usuario):
                 if empresa[0]:
                     emp = empresa[1]
                     ava = empresa[2]
-                    print(f"Nome: {emp['nome'].capitalize()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
+                    print(f"\nNome: {emp['nome'].capitalize()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
                     print(f"\nAvaliação Total: {ava['total']}\nMédia Estrelas: {ava['media']}\n{ava['selo']}")
                     for av in ava['lista']:
                         print(f"\nComentário: {av['comentario']}")

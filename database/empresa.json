@@ -1,20 +1,8 @@
 [
-  {
-    "nome": "mercado livre",
-    "cnpj": "1010",
-    "senha": "123",
-    "cadastro": true
-  },
-  {
-    "nome": "cesar school",
-    "cnpj": "2020",
-    "senha": "123",
-    "cadastro": true
-  },
-  {
-    "nome": "pague bem",
-    "cnpj": "9999",
-    "senha": "",
-    "cadastro": false
-  }
+    {
+        "nome": "cesar escola",
+        "cnpj": "1010",
+        "senha": "123",
+        "cadastro": true
+    }
 ]
