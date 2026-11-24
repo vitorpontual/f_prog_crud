@@ -19,6 +19,15 @@ def criar_avaliacao(email, cnpj_empresa, nome, estrelas, comentario='', ativa=Fa
     avaliacoes.append(nova_avaliacao)
     save_json(FILE, avaliacoes)
 
+def ativar_cadastro_avaliacao(cnpj, ativa="True"):
+    avaliacoes = load_json(FILE)
+    for av in avaliacoes:
+        if av['cnpj'] == cnpj and av['cadastro'] == False:
+            av['cadastro'] = True
+            
+    
+    save_json(FILE, avaliacoes)
+
 
 def buscar_avaliacoes_por_empresa(cnpj):
     avaliacoes = load_json(FILE)
@@ -58,6 +67,7 @@ def buscar_log(cnpj):
 def buscar_avaliacao_especifica(cnpj):
     avaliacoes = load_json(FILE)
     for avaliacao in avaliacoes:
+        if avaliacao['cnpj'] == cnpj:
             return avaliacao
 
     return None
@@ -105,5 +115,20 @@ def deletar_avaliacao(email, cnpj):
 
     save_json(LOG, log)
     save_json(FILE, lista)
-    return lista
 
+
+def deletar_avaliacao_empresa(cnpj):
+    avaliacoes = load_json(FILE)
+    lista = []
+    log = []
+
+    for av in avaliacoes:
+        if cnpj != av['cnpj']:
+            lista.append(av)
+
+    for l in log:
+        if cnpj != l['cnpj']:
+            log.append(l)
+
+    save_json(LOG, log)
+    save_json(FILE, lista)

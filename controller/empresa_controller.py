@@ -4,15 +4,24 @@ from models.avaliacao_model import *
 
 def cadastrar_empresa(nome, cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
-    if empresa:
-        if empresa['cadastro'] == True:
-            return "Error: Já existe uma empresa com este CNPJ."
-        else:
-            ativar_cadastro_empresa(nome, cnpj, senha)
-            return 'Cadastro Efetivado com Sucesso! Sua empresa já possuia avalaiações prévias'
+    empresa_a = buscar_avaliacao_especifica(cnpj)
+    try:
+        if not empresa and empresa_a['cnpj'] != cnpj and empresa_a['empresa'] != nome:
+            criar_empresa(nome, cnpj, senha)
+            return 'Empresa Cadastrada com sucesso'
+        elif empresa:
+            if empresa['cnpj'] == cnpj and empresa_a['empresa'] == nome and empresa['cadastro'] == False:
+                ativar_cadastro_empresa(nome, cnpj, senha)
+                ativar_cadastro_avaliacao(cnpj)
 
-    criar_empresa(nome, cnpj, senha)
-    return "Empresa cadastrada com sucesso!"
+                return 'Cadastro Efetivado com Sucesso! Sua empresa já possuia avalaiações prévias'
+
+
+        raise ValueError("Erro ao cadastrar a empresa! Já existe um empresa com CNPJ ou Nome Predefinido")
+    except Exception as e:
+        print(e)
+
+    
 
 
 def empresa_login(cnpj, senha):
@@ -41,6 +50,7 @@ def obter_log(cnpj):
 
 def deletar_conta_empresa(cnpj):
     deletar_empresa_por_cnpj(cnpj)
+    deletar_avaliacao_empresa(cnpj)
     return "Conta deletada com sucesso!"
 
 

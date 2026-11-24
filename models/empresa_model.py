@@ -34,7 +34,7 @@ def buscar_empresa_por_nome(nome):
     for empresa in empresas:
         if empresa['nome'] == nome.lower():
             return empresa
-    return False
+    return []
 
 def listar_todas_empresas():
     empresas = load_json(FILE)

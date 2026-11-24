@@ -1,8 +1,20 @@
 [
     {
+        "nome": "",
+        "cnpj": "",
+        "senha": "",
+        "cadastro": false
+    },
+    {
         "nome": "cesar escola",
         "cnpj": "1010",
-        "senha": "123",
+        "senha": "1",
+        "cadastro": true
+    },
+    {
+        "nome": "geraldao",
+        "cnpj": "2020",
+        "senha": "1",
         "cadastro": true
     }
 ]

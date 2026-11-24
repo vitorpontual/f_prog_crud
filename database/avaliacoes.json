@@ -4,7 +4,15 @@
         "cnpj": "1010",
         "email": "vitor@email.com",
         "estrelas": 1,
-        "comentario": "Falta inclusão",
+        "comentario": "quente",
+        "cadastro": false
+    },
+    {
+        "empresa": "geraldao",
+        "cnpj": "2020",
+        "email": "vitor@email.com",
+        "estrelas": 1,
+        "comentario": "quente",
         "cadastro": true
     }
 ]
