@@ -62,7 +62,7 @@ def menu_usuario_logado(usuario):
                 if empresa[0]:
                     emp = empresa[1]
                     ava = empresa[2]
-                    print(f"\nNome: {emp['nome'].capitalize()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
+                    print(f"\nNome: {emp['nome'].title()}\nCNPJ: {emp['cnpj']}\nCADASTRADA: {'Sim' if emp['cadastro'] else 'Não'}")
                     print(f"\nAvaliação Total: {ava['total']}\nMédia Estrelas: {ava['media']}\n{ava['selo']}")
                     for av in ava['lista']:
                         print(f"\nComentário: {av['comentario']}")
@@ -75,9 +75,12 @@ def menu_usuario_logado(usuario):
             case '5':
                 print("\n --- LISTA DAS EMPRESAS E AVALIAÇÕES ---")
                 empresas = listar_empresas()
+                print("-"*30)
                 for emp in empresas:
                     print(f"Nome da Empresa: {emp['nome'].title()}")
                     print(f"CNPJ da Empresa: {emp['cnpj']}")
+                    print("-"*30)
+
 
 
             case '8':

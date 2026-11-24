@@ -18,6 +18,7 @@ def menu_empresa_logada(emp):
                     print(f"\n--- DASHBOARD ---")
                     print(f"Total de Avaliações: {dash['total']}")
                     print(f"Média Geral: {dash['media']} Estrelas")
+                    print(f"Selo: {dash['selo']}")
                     for av in dash['lista']:
                         print(f"[{av['estrelas']} Estrelas]"
                               f"(Email: {av['email']}) - "
