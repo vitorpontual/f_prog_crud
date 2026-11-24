@@ -5,7 +5,7 @@ FILE = 'empresa.json'
 def criar_empresa(nome, cnpj, senha, cadastro=True):
     empresas = load_json(FILE)
     nova_empresa = {
-        'nome': nome, 'cnpj': cnpj, "senha": senha, "cadastro": cadastro
+        'nome': nome.lower().strip(), 'cnpj': cnpj, "senha": senha, "cadastro": cadastro
     }
     empresas.append(nova_empresa)
     save_json(FILE, empresas)
@@ -34,20 +34,19 @@ def buscar_empresa_por_nome(nome):
     for empresa in empresas:
         if empresa['nome'] == nome.lower():
             return empresa
-    return []
+    return None
 
 def listar_todas_empresas():
     empresas = load_json(FILE)
-    
     lista = []
     if not empresas:
-        print("Nenhuma Empresa Cadastrada Ainda.")
-        return []
+        return "Nenhuma Empresa Cadastrada Ainda."
+
     
     for emp in empresas:
         lista.append(emp)
 
-    return lista
+    return lista[1:]
         
     
 

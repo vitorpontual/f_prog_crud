@@ -3,16 +3,40 @@
         "empresa": "cesar escola",
         "cnpj": "1010",
         "email": "vitor@email.com",
-        "estrelas": 1,
-        "comentario": "quente",
+        "estrelas": 5,
+        "comentario": "Ambiente super inclusivo",
         "cadastro": false
     },
     {
         "empresa": "geraldao",
         "cnpj": "2020",
-        "email": "vitor@email.com",
-        "estrelas": 1,
+        "email": "lucas@email.com",
+        "estrelas": 3,
         "comentario": "quente",
+        "cadastro": true
+    },
+    {
+        "empresa": "geraldao",
+        "cnpj": "2020",
+        "email": "vitor@email.com",
+        "estrelas": 5,
+        "comentario": "Ambiente super inclusivo",
+        "cadastro": true
+    },
+    {
+        "empresa": "geraldao",
+        "cnpj": "2020",
+        "email": "jogao@email.com",
+        "estrelas": 5,
+        "comentario": "Excelente",
+        "cadastro": true
+    },
+    {
+        "empresa": "geraldao",
+        "cnpj": "2020",
+        "email": "maria@email.com",
+        "estrelas": 4,
+        "comentario": "Legal",
         "cadastro": true
     }
 ]

@@ -4,13 +4,17 @@ from models.avaliacao_model import *
 
 def cadastrar_empresa(nome, cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
+    empresa_n = buscar_empresa_por_nome(nome)
     empresa_a = buscar_avaliacao_especifica(cnpj)
     try:
-        if not empresa and empresa_a['cnpj'] != cnpj and empresa_a['empresa'] != nome:
+        if not empresa and not empresa_a and not empresa_n:
             criar_empresa(nome, cnpj, senha)
             return 'Empresa Cadastrada com sucesso'
-        elif empresa:
-            if empresa['cnpj'] == cnpj and empresa_a['empresa'] == nome and empresa['cadastro'] == False:
+        elif empresa and empresa_a or empresa_n and empresa_a:
+            porb = empresa['cnpj'] != empresa_a['cnpj'] and empresa_n['nome'] != empresa_a['empresa']
+            if porb:
+                raise TypeError("Já possui cadastro com o nome ou cnpj")
+            else:            
                 ativar_cadastro_empresa(nome, cnpj, senha)
                 ativar_cadastro_avaliacao(cnpj)
 

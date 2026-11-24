@@ -9,11 +9,23 @@
         "nome": "cesar escola",
         "cnpj": "1010",
         "senha": "1",
-        "cadastro": true
+        "cadastro": false
     },
     {
         "nome": "geraldao",
         "cnpj": "2020",
+        "senha": "1",
+        "cadastro": true
+    },
+    {
+        "nome": "tempest",
+        "cnpj": "3030",
+        "senha": "1",
+        "cadastro": true
+    },
+    {
+        "nome": "liferay",
+        "cnpj": "4040",
         "senha": "1",
         "cadastro": true
     }

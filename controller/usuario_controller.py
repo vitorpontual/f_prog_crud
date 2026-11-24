@@ -83,10 +83,6 @@ def buscar_empresa(nome):
 def listar_empresas():
     empresas = listar_todas_empresas()
 
-    if not empresas:
-        return 'Nenhuma empresas cadastrada'
-
-
     return empresas
 
 def deletar_conta_usuario(cpf):
