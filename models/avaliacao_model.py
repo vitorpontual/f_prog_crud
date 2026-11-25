@@ -64,10 +64,10 @@ def buscar_log(cnpj):
     return lista
 
 
-def buscar_avaliacao_especifica(cnpj):
+def buscar_avaliacao_especifica(cnpj, email):
     avaliacoes = load_json(FILE)
     for avaliacao in avaliacoes:
-        if avaliacao['cnpj'] == cnpj:
+        if avaliacao['cnpj'] == cnpj and avaliacao['email'] == email:
             return avaliacao
 
     return None
@@ -87,7 +87,7 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
             atualizado = True
 
-        elif avaliacao['cadastro'] == False:
+        elif avaliacao['email'] == email and avaliacao['cnpj'] == cnpj and avaliacao['cadastro'] == False:
             avaliacao['comentario'] = comentario
             avaliacao['estrelas'] = estrelas
             atualizado = True
@@ -110,7 +110,6 @@ def deletar_avaliacao(email, cnpj):
         elif av['cadastro'] == False:
             pass
         else:
-            print(av)
             lista.append(av)
 
     save_json(LOG, log)

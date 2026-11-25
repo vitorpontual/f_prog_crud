@@ -4,6 +4,7 @@ from utils.validacoes import *
 def menu_usuario_logado(usuario):
     email = usuario['email']
     cpf = usuario['cpf']
+
     while True:
         print(f"\n---PAINEL DO USUÁRIO: {usuario['nome']} ---")
 

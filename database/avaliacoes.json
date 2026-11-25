@@ -1,26 +1,34 @@
 [
     {
-        "empresa": "",
-        "cnpj": "",
-        "email": "",
-        "estrelas": 0,
-        "comentario": "",
-        "cadastro": false
-    },
-    {
-        "empresa": "cesar escola",
-        "cnpj": "1010",
-        "email": "vitor@email.com",
-        "estrelas": 5,
-        "comentario": "Masa",
-        "cadastro": false
-    },
-    {
         "empresa": "tempest",
         "cnpj": "3030",
         "email": "vitor@email.com",
         "estrelas": 5,
         "comentario": "Muito inclusiva",
+        "cadastro": true
+    },
+    {
+        "empresa": "tempest",
+        "cnpj": "3030",
+        "email": "alos@email.com",
+        "estrelas": 5,
+        "comentario": "Empresa sensacional",
+        "cadastro": true
+    },
+    {
+        "empresa": "tempest",
+        "cnpj": "3030",
+        "email": "lucas@email.com",
+        "estrelas": 5,
+        "comentario": "supreme",
+        "cadastro": true
+    },
+    {
+        "empresa": "tempest",
+        "cnpj": "3030",
+        "email": "maria@email.com",
+        "estrelas": 5,
+        "comentario": "SUper",
         "cadastro": true
     }
 ]
