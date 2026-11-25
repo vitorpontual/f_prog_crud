@@ -72,13 +72,12 @@ def buscar_avaliacao_especifica(cnpj):
 
     return None
 
-
 def update_avaliacao(email, cnpj, estrelas, comentario):
     avaliacoes = load_json(FILE)
     log = load_json(LOG)
     atualizado = False
 
-    for avaliacao in avaliacoes:
+    for avaliacao in avaliacoes[1:]:
         if avaliacao['email'] == email and avaliacao['cnpj'] == cnpj and avaliacao['cadastro'] == True:
             data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
 
@@ -87,6 +86,7 @@ def update_avaliacao(email, cnpj, estrelas, comentario):
             avaliacao['estrelas'] = estrelas
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
             atualizado = True
+
         elif avaliacao['cadastro'] == False:
             avaliacao['comentario'] = comentario
             avaliacao['estrelas'] = estrelas
@@ -119,6 +119,7 @@ def deletar_avaliacao(email, cnpj):
 
 def deletar_avaliacao_empresa(cnpj):
     avaliacoes = load_json(FILE)
+    logs = load_json(LOG)
     lista = []
     log = []
 
@@ -126,8 +127,8 @@ def deletar_avaliacao_empresa(cnpj):
         if cnpj != av['cnpj']:
             lista.append(av)
 
-    for l in log:
-        if cnpj != l['cnpj']:
+    for l in logs:
+        if cnpj == l['cnpj']:
             log.append(l)
 
     save_json(LOG, log)

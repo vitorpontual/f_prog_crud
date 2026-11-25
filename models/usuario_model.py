@@ -13,6 +13,7 @@ def criar_usuario(nome, email, senha, cpf, pcd=''):
         novo_usuario = {
             'nome': nome, 'email': email, 'senha': senha, 'cpf': cpf, 'pcd': pcd
         }
+        
     usuarios.append(novo_usuario)
     save_json(FILE, usuarios)
 

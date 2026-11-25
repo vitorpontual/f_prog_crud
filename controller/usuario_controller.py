@@ -26,27 +26,23 @@ def registrar_avaliacao(email, nome, cnpj, estrelas, comentario):
     if not (0 <= estrelas <= 5):
         return "Erro: A nota deve ser entre 0 e 5 estrelas"
     empresa = buscar_empresa_por_cnpj(cnpj)
-    empresan = buscar_empresa_por_nome(nome)
     avaliacao = buscar_avaliacao_especifica(cnpj)
 
 
-    if not empresan and not empresa:
+    if not empresa:
         criar_empresa(nome, cnpj,"",False)
         criar_avaliacao(email, cnpj, nome, estrelas, comentario)
         return "Avaliação cadastrada para empresa não ativa no aplicativo"
 
 
-    if avaliacao and empresa and empresan:
+    if avaliacao and empresa:
         return "Erro: Você já avaliou a empresa. Use a opção alterar comentário se desejar."
 
-    if empresa and empresan:
+    if empresa:
         criar_avaliacao(email, cnpj, nome, estrelas, comentario, empresa['cadastro'])
         return 'Avaliação Registrada com suceso!'
   
     raise ValueError("Conflito de cadastro da empresa")
-
-
-
 
 
 

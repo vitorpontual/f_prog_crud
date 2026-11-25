@@ -6,6 +6,7 @@ def cadastrar_empresa(nome, cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
     empresa_n = buscar_empresa_por_nome(nome)
     empresa_a = buscar_avaliacao_especifica(cnpj)
+    
     try:
         if not empresa and not empresa_a and not empresa_n:
             criar_empresa(nome, cnpj, senha)

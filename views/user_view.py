@@ -28,10 +28,10 @@ def menu_usuario_logado(usuario):
                     comentario = input("Comentário (opcional): ")
                     msg = registrar_avaliacao(email, nome, cnpj, estrelas, comentario)
                     print(msg)
-                except Exception as e:
-                    print(e)
                 except ValueError:
                     print("Erro: A nota deve ser um número inteiro!")
+                except Exception as e:
+                    print(e)
 
             case '2':
                 cnpj = input("Editar Avaliação da CNPJ da Empresa [CNPJ]: ")
@@ -40,10 +40,10 @@ def menu_usuario_logado(usuario):
                     comentario = input("[Editar] Comentário: ")
                     msg = alterar_avaliacao(email, cnpj, estrelas, comentario)
                     print(msg)
-                except Exception as e:
-                    print(e)
                 except ValueError:
                     print("Error: A nota de ser um número inteiro!")
+                except Exception as e:
+                    print(e)
             
             case '3':
                 print("\n === DELETAR AVALIAÇÃO ===")

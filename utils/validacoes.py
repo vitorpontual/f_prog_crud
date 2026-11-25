@@ -2,23 +2,26 @@ import re
 
 def confirmar_senha():
     while True:
-        senha = input("Senha: ")
+        senha = input("Senha: [b para voltar] ")
+        if senha.lower() == 'b':
+            return True
+            
         confirme_senha = input("Confirme sua senha: ")
         if senha == confirme_senha:
             return senha
-            break
         else:
             print("Repita a senha")
 
 def validar_email():
     while True:
-        email = input("Email: ")
+        email = input("Email: ou [b para voltar] ").strip()
+        if email.lower() == 'b':
+            return True
         
         padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
         if re.match(padrao, email.strip()):
             return email
-            break
         else:
             print("Repita o email")
 
@@ -91,11 +94,11 @@ def cpf_validador_real():
 def sistema_de_selos(total_usuarios, media):
     if total_usuarios >= 4 and media > 4.8:
         return "Selo Diamante"
-    elif total_usuarios > 3 and media > 4:
+    elif total_usuarios > 3 and media > 3.9:
         return "Selo Ouro"
-    elif total_usuarios > 2 and media > 3:
+    elif total_usuarios > 2 and media > 2.9:
         return "Selo Prata"
-    elif total_usuarios > 1 and media > 2:
+    elif total_usuarios > 1 and media > 1.9:
         return "Selo Bronze"
     else:
         return "Essa empresa não tem selo."

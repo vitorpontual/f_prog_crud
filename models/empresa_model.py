@@ -1,6 +1,8 @@
 from utils.database import *
 
 FILE = 'empresa.json'
+LOG = 'log.json'
+AV = 'avaliacoes.json'
 
 def criar_empresa(nome, cnpj, senha, cadastro=True):
     empresas = load_json(FILE)
@@ -48,16 +50,29 @@ def listar_todas_empresas():
 
     return lista[1:]
         
-    
 
 def deletar_empresa_por_cnpj(cnpj):
     empresas = load_json(FILE)
+    avaliacoes = load_json(AV)
+    logs = load_json(LOG)
     
     lista = []
+    log = []
+    avs = []
     for emp in empresas:
         if emp['cnpj'] != cnpj:
             lista.append(emp)
 
+    for av in avaliacoes:
+        if av['cnpj'] != cnpj:
+            avs.append(av)
+
+    for l in logs:
+        if l['cnpj'] != cnpj:
+            log.append(l)
+
+    save_json(LOG, log)
+    save_json(AV, avs)
     save_json(FILE, lista)
 
     
