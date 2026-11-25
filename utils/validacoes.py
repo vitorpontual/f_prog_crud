@@ -2,10 +2,7 @@ import re
 
 def confirmar_senha():
     while True:
-        senha = input("Senha: [b para voltar] ")
-        if senha.lower() == 'b':
-            return True
-            
+        senha = input("Senha: ")
         confirme_senha = input("Confirme sua senha: ")
         if senha == confirme_senha:
             return senha
@@ -14,10 +11,8 @@ def confirmar_senha():
 
 def validar_email():
     while True:
-        email = input("Email: ou [b para voltar] ").strip()
-        if email.lower() == 'b':
-            return True
-        
+        email = input("Email: ").strip()
+
         padrao = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
 
         if re.match(padrao, email.strip()):

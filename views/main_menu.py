@@ -20,11 +20,7 @@ def main_menu():
             case '1':
                 try:
                     email = validar_email()
-                    if email == True:
-                        continue
                     senha = input("Senha: ")
-                    if senha == True:
-                        continue
                     usuario = usuario_login(email, senha)
                     if not usuario:
                         raise ValueError("Email ou Senha Inválida")
