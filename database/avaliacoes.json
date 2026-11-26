@@ -2,14 +2,6 @@
     {
         "empresa": "tempest",
         "cnpj": "3030",
-        "email": "vitor@email.com",
-        "estrelas": 5,
-        "comentario": "Muito inclusiva",
-        "cadastro": true
-    },
-    {
-        "empresa": "tempest",
-        "cnpj": "3030",
         "email": "alos@email.com",
         "estrelas": 5,
         "comentario": "Empresa sensacional",
@@ -20,7 +12,7 @@
         "cnpj": "3030",
         "email": "lucas@email.com",
         "estrelas": 5,
-        "comentario": "supreme",
+        "comentario": "Topado",
         "cadastro": true
     },
     {
@@ -30,5 +22,53 @@
         "estrelas": 5,
         "comentario": "SUper",
         "cadastro": true
+    },
+    {
+        "empresa": "cesar escola",
+        "cnpj": "1010",
+        "email": "vitor@email.com",
+        "estrelas": 5,
+        "comentario": "ok",
+        "cadastro": false
+    },
+    {
+        "empresa": "tempest",
+        "cnpj": "3030",
+        "email": "vitor@email.com",
+        "estrelas": 5,
+        "comentario": "Top",
+        "cadastro": true
+    },
+    {
+        "empresa": "liferay",
+        "cnpj": "4040",
+        "email": "doug@email.com",
+        "estrelas": 5,
+        "comentario": "ok",
+        "cadastro": false
+    },
+    {
+        "empresa": "tempest",
+        "cnpj": "3030",
+        "email": "doug@email.com",
+        "estrelas": 5,
+        "comentario": "Muito massa!",
+        "cadastro": true
+    },
+    {
+        "empresa": "liferay",
+        "cnpj": "4040",
+        "email": "vitor@email.com",
+        "estrelas": 2,
+        "comentario": "é, ok!",
+        "cadastro": false
+    },
+    {
+        "empresa": "geraldao",
+        "cnpj": "2020",
+        "email": "vitor@email.com",
+        "estrelas": 2,
+        "comentario": "localização ruim, quente.",
+        "cadastro": false
     }
 ]

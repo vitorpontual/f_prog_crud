@@ -48,6 +48,11 @@ def listar_todas_empresas():
     for emp in empresas:
         lista.append(emp)
 
+    def pegar_empresa(empresa):
+        return empresa['cnpj']
+
+
+    lista = sorted(lista, key=pegar_empresa)
     return lista[1:]
         
 

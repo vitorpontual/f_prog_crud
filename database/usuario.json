@@ -33,5 +33,12 @@
         "senha": "1",
         "cpf": "555",
         "pcd": ""
+    },
+    {
+        "nome": "Doug",
+        "email": "doug@email.com",
+        "senha": "1",
+        "cpf": "666",
+        "pcd": "surdo"
     }
 ]

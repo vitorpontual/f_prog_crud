@@ -5,7 +5,7 @@ from models.avaliacao_model import *
 def cadastrar_empresa(nome, cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
     empresa_n = buscar_empresa_por_nome(nome)
-    empresa_a = buscar_avaliacao_especifica(cnpj)
+    empresa_a = buscar_avaliacao_especifica(cnpj, email="")
     
     try:
         if not empresa and not empresa_a and not empresa_n:
@@ -55,7 +55,6 @@ def obter_log(cnpj):
 
 def deletar_conta_empresa(cnpj):
     deletar_empresa_por_cnpj(cnpj)
-    deletar_avaliacao_empresa(cnpj)
     return "Conta deletada com sucesso!"
 
 

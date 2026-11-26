@@ -31,28 +31,29 @@ def registrar_avaliacao(email, nome, cnpj, estrelas, comentario):
     avaliacao = buscar_avaliacao_especifica(cnpj, email)
 
 
+    try:
+        if not empresa and not empresan:
+            criar_empresa(nome, cnpj,"",False)
+            criar_avaliacao(email, cnpj, nome, estrelas, comentario)
+            return "Avaliação cadastrada para empresa não ativa no aplicativo"
+        
+        if not empresa and empresan or empresa and not empresan:
+            raise TypeError("Conflito no cadastro!")
 
-    if not empresa and not empresan:
-        criar_empresa(nome, cnpj,"",False)
-        criar_avaliacao(email, cnpj, nome, estrelas, comentario)
-        return "Avaliação cadastrada para empresa não ativa no aplicativo"
-    
-    if not empresa and empresan or empresa and not empresan:
-        raise TypeError("Conflito no cadastro!")
+        if empresa['cnpj'] == cnpj and empresa['nome'] != nome or empresa['cnpj'] != cnpj and empresa['nome'] == nome:
+            raise TypeError("Conflito de cadastro!")
 
-    if empresa['cnpj'] == cnpj and empresa['nome'] != nome or empresa['cnpj'] != cnpj and empresa['nome'] == nome:
-        raise TypeError("Conflito de cadastro")
+        if avaliacao:
+            return "Erro: Você já avaliou a empresa. Use a opção alterar comentário se desejar."
+        elif empresa['cadastro'] == True:
+            criar_avaliacao(email, cnpj, nome, estrelas, comentario, empresa['cadastro'])
+            return "Avaliação cadastrada com sucesso!"
+        else:
+            criar_avaliacao(email, cnpj, nome, estrelas, comentario)
+            return "Avaliação cadastrada para empresa não ativa no aplicativo"
 
-    if avaliacao:
-        return "Erro: Você já avaliou a empresa. Use a opção alterar comentário se desejar."
-    else:
-        criar_avaliacao(email, cnpj, nome, estrelas, comentario, empresa['cadastro'])
-        return "Avaliação cadastrada com sucesso!"
-    
-    
-
-  
-    raise TypeError("Conflito de cadastro da empresa")
+    except:
+        raise TypeError("Conflito de cadastro da empresa")
 
 
 
@@ -85,6 +86,15 @@ def buscar_empresa(nome):
         return (False, f'{empresa['nome'].capitalize()} sem avalaiaçõs')
     
     return (True, empresa, avaliacao)
+
+def minhas_avaliacoes(email):
+    avaliacoes = listar_avaliacoes_do_usuario(email)
+
+    if not avaliacoess:
+        return 'Você não avaliou ainda.'
+
+    return avaliacoes
+
 
 def listar_empresas():
     empresas = listar_todas_empresas()

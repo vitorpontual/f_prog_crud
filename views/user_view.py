@@ -13,6 +13,7 @@ def menu_usuario_logado(usuario):
         print("3 - Deletar Avaliação")
         print("4 - Buscar Empresa")
         print("5 - Listar Empresas")
+        print("6 - Minhas avaliações")
         print("8 - Perfil")
         print("9 - Deletar Minha Conta")
         print("0 - Fazer logout")
@@ -74,13 +75,21 @@ def menu_usuario_logado(usuario):
 
 
             case '5':
-                print("\n --- LISTA DAS EMPRESAS E AVALIAÇÕES ---")
+                print("\n --- LISTA DAS EMPRESAS ---")
                 empresas = listar_empresas()
                 print("-"*30)
                 for emp in empresas:
                     print(f"Nome da Empresa: {emp['nome'].title()}")
                     print(f"CNPJ da Empresa: {emp['cnpj']}")
                     print("-"*30)
+            
+            case '6':
+                print("\n --- MINHAS AVALIAÇÕES ---")
+                ava = listar_avaliacoes_do_usuario(email)
+                for emp in ava:
+                    print(f"{emp['empresa'].title()}\n[{emp['estrelas']} Estrelas] - [{emp['comentario']}]")
+                    print("-"*30)
+
 
 
 

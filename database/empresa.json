@@ -18,14 +18,14 @@
         "cadastro": true
     },
     {
-        "nome": "liferay",
-        "cnpj": "4040",
-        "senha": "1",
-        "cadastro": true
-    },
-    {
         "nome": "geraldao",
         "cnpj": "2020",
+        "senha": "",
+        "cadastro": false
+    },
+    {
+        "nome": "liferay",
+        "cnpj": "4040",
         "senha": "",
         "cadastro": false
     }
