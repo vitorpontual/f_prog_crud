@@ -128,12 +128,15 @@ def deletar_avaliacao(email, cnpj):
             log_tupla = (data_hora, av['estrelas'], av['comentario'], email)
             log.insert(0, {'cnpj': cnpj, 'log': log_tupla})
             deletar = True
+        elif av['cadastro'] == False and av['email'] and av['cnpj'] == cnpj:
+            deletar = True
         else:
             lista.append(av)
 
     for l in logs:
         log.append(l)
 
-    save_json(LOG,  log)
-    save_json(FILE, lista)
+    if deletar:
+        save_json(LOG,  log)
+        save_json(FILE, lista)
     return deletar

@@ -37,7 +37,7 @@ def main_menu():
                 if empresa:
                     print("Login realizado com sucesso!")
                     menu_empresa_logada(empresa)
-                else:
+                else:         
                     print("Erro: CNPJ ou senha incorretos.")
                 
             case '3':
