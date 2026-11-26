@@ -40,5 +40,12 @@
         "senha": "1",
         "cpf": "666",
         "pcd": "surdo"
+    },
+    {
+        "nome": "casi",
+        "email": "casi@email.com",
+        "senha": "1",
+        "cpf": "123",
+        "pcd": ""
     }
 ]

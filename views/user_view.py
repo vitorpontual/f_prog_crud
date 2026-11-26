@@ -85,10 +85,17 @@ def menu_usuario_logado(usuario):
             
             case '6':
                 print("\n --- MINHAS AVALIAÇÕES ---")
-                ava = listar_avaliacoes_do_usuario(email)
-                for emp in ava:
-                    print(f"{emp['empresa'].title()}\n[{emp['estrelas']} Estrelas] - [{emp['comentario']}]")
-                    print("-"*30)
+                ava = minhas_avaliacoes(email)
+
+                if ava:
+                    for emp in ava:
+                        print(f"{emp['empresa'].title()}\n[{emp['estrelas']} Estrelas] - [{emp['comentario']}]")
+                        print("-"*30)
+                else:
+                    print(">>>Ainda não fez avaliação")
+  
+
+        
 
 
 

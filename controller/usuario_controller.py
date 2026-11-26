@@ -9,7 +9,6 @@ def cadastrar_usuario(nome, email, senha, cpf, pcd):
 
     if buscar_usuario_por_email(email):
         return "Error: Já existe um usuário cadastrado com esse Email"
-
     
     criar_usuario(nome, email, senha, cpf, pcd)
     return 'Usuário cadastrado com sucesso'
@@ -89,11 +88,13 @@ def buscar_empresa(nome):
 
 def minhas_avaliacoes(email):
     avaliacoes = listar_avaliacoes_do_usuario(email)
-
-    if not avaliacoess:
-        return 'Você não avaliou ainda.'
+    
+    if not avaliacoes:
+        return None
 
     return avaliacoes
+
+
 
 
 def listar_empresas():

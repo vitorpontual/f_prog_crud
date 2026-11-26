@@ -80,11 +80,7 @@ def listar_avaliacoes_do_usuario(email):
         return lista        
     else:
         return None
-
-    
-
-
-    
+   
 
 def buscar_avaliacao_especifica(cnpj, email):
     avaliacoes = load_json(FILE)
@@ -138,6 +134,6 @@ def deletar_avaliacao(email, cnpj):
     for l in logs:
         log.append(l)
 
-    save_json(LOG, log)
+    save_json(LOG,  log)
     save_json(FILE, lista)
     return deletar
