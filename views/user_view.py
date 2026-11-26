@@ -95,11 +95,6 @@ def menu_usuario_logado(usuario):
                     print(">>>Ainda não fez avaliação")
   
 
-        
-
-
-
-
             case '8':
                 print(f"\n --- PERFIL {usuario['nome']} ----")
                 perfil = perfil_usuario(usuario['email'])

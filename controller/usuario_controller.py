@@ -62,7 +62,6 @@ def perfil_usuario(email):
     return usuario
 
 
-
 def alterar_avaliacao(email, cnpj, estrelas, comentario):
     avaliacao = buscar_avaliacao_especifica(cnpj, email)
 
@@ -73,6 +72,7 @@ def alterar_avaliacao(email, cnpj, estrelas, comentario):
     if sucesso:
         return 'Avalaiação alterada com sucesso!'
     return "Error ao atualizar"
+
 
 def buscar_empresa(nome):
     empresa = buscar_empresa_por_nome(nome)   
@@ -95,16 +95,16 @@ def minhas_avaliacoes(email):
     return avaliacoes
 
 
-
-
 def listar_empresas():
     empresas = listar_todas_empresas()
-
+    
     return empresas
+
 
 def deletar_conta_usuario(cpf):
     deletar_usuario_por_cpf(cpf)
     return "Conta deletada com sucesso."
+
 
 def deletar_avaliacao_usuario(email, cnpj):
     

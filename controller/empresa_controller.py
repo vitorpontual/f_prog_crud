@@ -27,8 +27,6 @@ def cadastrar_empresa(nome, cnpj, senha):
         print(e)
 
     
-
-
 def empresa_login(cnpj, senha):
     empresa = buscar_empresa_por_cnpj(cnpj)
     if empresa and empresa['senha'] == senha and empresa['cadastro'] == True:
