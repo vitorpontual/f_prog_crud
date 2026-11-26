@@ -47,5 +47,12 @@
         "senha": "1",
         "cpf": "123",
         "pcd": ""
+    },
+    {
+        "nome": "Joazinho",
+        "email": "j@e.com",
+        "senha": "1",
+        "cpf": "1",
+        "pcd": ""
     }
 ]

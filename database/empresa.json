@@ -12,12 +12,6 @@
         "cadastro": false
     },
     {
-        "nome": "tempest",
-        "cnpj": "3030",
-        "senha": "1",
-        "cadastro": true
-    },
-    {
         "nome": "geraldao",
         "cnpj": "2020",
         "senha": "",
